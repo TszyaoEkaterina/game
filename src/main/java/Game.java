@@ -28,7 +28,6 @@ public class Game {
             return 2;
         }
     }
-
     public Player searchByName(String playerName) {
         for (Player player : players) {
             if (playerName.equals(player.getName())) {
@@ -36,5 +35,8 @@ public class Game {
             }
         }
         return null;
+    }
+    public List<Player> findAll(){
+        return players;
     }
 }
