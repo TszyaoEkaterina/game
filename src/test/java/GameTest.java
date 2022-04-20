@@ -27,6 +27,13 @@ class GameTest {
         assertThrows(NotRegisteredException.class, () -> {game.round("Tom", "John");});
     }
     @Test
+    void shouldNotRegisterTwice(){
+        game.register(first);
+        int actual = game.findAll().size();
+        int expected = 3;
+        assertEquals(expected,actual);
+    }
+    @Test
     void shouldReturn1WhenPlayer1Stronger(){
         game.register(forth);
         int actual= game.round("Chris","Mike");

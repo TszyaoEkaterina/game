@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Game {
-    private List<Player> players = new ArrayList<>();
+    private HashMap<String,Player> players = new HashMap<>() ;
+
 
     public void register(Player player) {
-        if (searchByName(player.getName()) == null) {
-            this.players.add(player);
-        }
+            this.players.putIfAbsent(player.getName(),player);
     }
 
     public int round(String playerName1, String playerName2) {
@@ -15,8 +13,8 @@ public class Game {
             System.out.println("You can't round with yourself.");
             throw new RuntimeException();
         }
-        Player player1 = searchByName(playerName1);
-        Player player2 = searchByName(playerName2);
+        Player player1 = players.get(playerName1);
+        Player player2 = players.get(playerName2);
         if (player1 == null || player2 == null) {
             throw new NotRegisteredException();
         }
@@ -28,13 +26,7 @@ public class Game {
             return 2;
         }
     }
-
-    public Player searchByName(String playerName) {
-        for (Player player : players) {
-            if (playerName.equals(player.getName())) {
-                return player;
-            }
-        }
-        return null;
+    public HashMap<String,Player> findAll(){
+        return players;
     }
 }
