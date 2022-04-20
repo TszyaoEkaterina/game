@@ -20,40 +20,52 @@ class GameTest {
     
     @Test
     void shouldThrowExceptionIfRoundNotRegisteredPlayer1() {
-        assertThrows(NotRegisteredException.class, () -> {game.round("John", "Mike");});
+        assertThrows(NotRegisteredException.class, () -> {
+            game.round("John", "Mike");
+        });
     }
+    
     @Test
     void shouldThrowExceptionIfRoundNotRegisteredPlayer2() {
-        assertThrows(NotRegisteredException.class, () -> {game.round("Tom", "John");});
+        assertThrows(NotRegisteredException.class, () -> {
+            game.round("Tom", "John");
+        });
     }
+    
     @Test
-    void shouldNotRegisterTwice(){
+    void shouldNotRegisterTwice() {
         game.register(first);
         int actual = game.findAll().size();
         int expected = 3;
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
+    
     @Test
-    void shouldReturn1WhenPlayer1Stronger(){
+    void shouldReturn1WhenPlayer1Stronger() {
         game.register(forth);
-        int actual= game.round("Chris","Mike");
+        int actual = game.round("Chris", "Mike");
         int expected = 1;
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
+    
     @Test
-    void shouldReturn2WhenPlayer2Stronger(){
-        int actual= game.round("Smith","Tom");
+    void shouldReturn2WhenPlayer2Stronger() {
+        int actual = game.round("Smith", "Tom");
         int expected = 2;
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
+    
     @Test
-    void shouldReturn0WhenPlayersEquallyStrong(){
-        int actual= game.round("Tom","Mike");
+    void shouldReturn0WhenPlayersEquallyStrong() {
+        int actual = game.round("Tom", "Mike");
         int expected = 0;
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
+    
     @Test
     void shouldThrowExceptionIfRoundWithYourself() {
-        assertThrows(RuntimeException.class, () -> {game.round("Tom", "Tom");});
+        assertThrows(RuntimeException.class, () -> {
+            game.round("Tom", "Tom");
+        });
     }
 }
